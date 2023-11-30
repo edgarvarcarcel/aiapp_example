@@ -7,13 +7,9 @@ This file is used to generate app for Anastomotic leaage prediction
 
 # Load libraries
 import streamlit as st
-import scipy.stats as sta
 import pandas as pd
-import pickle as pkl
-import matplotlib.pyplot as plt
 from streamlit_option_menu import option_menu
 import numpy as np
-plt.style.use('grayscale')
 
 # Load libraries for R interaction
 import os
