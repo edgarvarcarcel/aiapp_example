@@ -261,6 +261,8 @@ if selected == 'Home':
     # Prediction
     predict_button = st.button('Predict')
     if predict_button:
+        import pandas as pd
+        print(pd.__version__)
         # Check that bmi pre is equal or greater than 35
         number_of_warnings = 0
         if user_input['bmi'].values[0] < 35:
