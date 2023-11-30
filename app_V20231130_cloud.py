@@ -36,7 +36,6 @@ COMMAND_LOAD_R_MODEL = 'loaded_model <- readRDS("' + MODEL_PATH + MODEL_NAME + '
 @st.cache_data() # We use this decorator so this initialization doesn't run every time the user change into the page
 def initialize_app():
     # Load the model in R
-    ro.r('install.packages("caret")')
     ro.r('library(caret)')
     ro.r(COMMAND_LOAD_R_MODEL)
     print('R Model loaded')
