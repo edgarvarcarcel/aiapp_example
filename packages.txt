@@ -1,2 +1,3 @@
 r-base
 r-cran-caret
+r-cran-glmnet
