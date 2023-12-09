@@ -312,9 +312,9 @@ if selected == 'Home':
               r"images/medtronic.png"]
     column_1 , column_2 , column_3 = st.columns(3 , gap = 'large')
     with column_1:
-        st.image(images[3] , width = 100)
+        st.image(images[3] , width = 150)
     with column_2:
-        st.image(images[1] , width = 100)
+        st.image(images[1] , width = 150)
     with column_3:
         st.image(images[4] , width = 150)
     column_3 , column_4 , column_5 = st.columns(3 , gap = 'medium')
