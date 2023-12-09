@@ -299,11 +299,11 @@ if selected == 'Home':
             with localconverter(ro.default_converter + pandas2ri.converter):
                 probs_python = ro.conversion.rpy2py(probs_r)
             probs_python.index = ['Probability']
-            probs_python.columns = ['No Anastomotic Leakage' , 'Anastomotic Leakage']
+            probs_python.columns = ['No \nAnastomotic Leakage' , 'Anastomotic Leakage']
             st.markdown("<p style='text-align: center;'><strong>Probabilities</strong></p>", unsafe_allow_html=True)
             left_column , center_column, right_column = st.columns(3)
             with center_column:
-                st.dataframe(probs_python.reset_index().astype('object'),
+                st.dataframe(probs_python.reset_index(drop = True).astype('object'),
                              column_config = {'index' : 'Metric'},
                              hide_index = True)
                 st.markdown(text_to_show)
