@@ -187,8 +187,7 @@ def preprocess_input(asa, height, weight, bmi, smoker, alcohol,
 ##############################################################################
 # Page configuration
 st.set_page_config(page_title = "Anastomotic Leakage Prediction App",
-                   page_icon=":chart_with_upwards_trend:",
-                   layout = "wide")
+                   page_icon=":chart_with_upwards_trend:")
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 # Initialize app
@@ -221,9 +220,9 @@ if selected == 'Home':
     # Patients info input
     #female = st.sidebar.selectbox('Gender', ('Male' , 'Female'))
     #age = st.sidebar.slider("Age:", min_value = 18, max_value = 100,step = 1)
-    height = st.sidebar.slider("Height:", min_value = 120 , max_value = 260, step = 1)
-    weight = st.sidebar.slider("Weight:", min_value = 30 , max_value = 160, step = 1)
-    bmi = st.sidebar.slider("BMI:" , min_value = 35.0, max_value = 100.0, step = 0.1)
+    height = st.sidebar.slider("Height:", min_value = 140 , max_value = 220, step = 1)
+    weight = st.sidebar.slider("Weight:", min_value = 40 , max_value = 160, step = 1)
+    bmi = st.sidebar.slider("BMI:" , min_value = 20.0, max_value = 60.0, step = 0.1)
     smoker = st.sidebar.selectbox('Smoker:', ('Yes' , 'No'))
     alcohol = st.sidebar.selectbox('Alcohol:', ('Yes' , 'No'))
     #nutrition = st.sidebar.slider("Nutrition Score:", min_value = 1 , max_value = 10, step = 1)
@@ -296,14 +295,13 @@ if selected == 'Home':
             with localconverter(ro.default_converter + pandas2ri.converter):
                 probs_python = ro.conversion.rpy2py(probs_r)
             probs_python.index = ['Probability']
-            probs_python.columns = ['No Anastomotic Leakage' , 'Anastomotic Leakage']
+            probs_python.columns = ['No \nAnastomotic Leakage' , 'Anastomotic Leakage']
             st.markdown("<p style='text-align: center;'><strong>Probabilities</strong></p>", unsafe_allow_html=True)
+            st.dataframe(probs_python.reset_index(drop = True).astype('object'),
+                         column_config = {'index' : 'Metric'},
+                         hide_index = True)
             left_column , center_column, right_column = st.columns(3)
-            with center_column:
-                st.dataframe(probs_python.reset_index(drop = True).astype('object'),
-                             column_config = {'index' : 'Metric'},
-                             hide_index = True)
-                st.markdown(text_to_show)
+            st.markdown(text_to_show)
     # Sponsor Images
     st.markdown("---")
     st.markdown("<p style='text-align: center;'><strong>Sponsored By:</strong></p>", unsafe_allow_html=True)
@@ -312,14 +310,17 @@ if selected == 'Home':
               r"images/gzo.png",
               r"images/KSBL.PNG",
               r"images/medtronic.png"]
-    column_1 , column_2 , column_3 , column_4 , column_5 = st.columns(5)
+    column_1 , column_2 , column_3 = st.columns(3 , gap = 'large')
     with column_1:
-        st.image(images[4] , width = 150)
+        st.image(images[3] , width = 100)
     with column_2:
-        st.image(images[1] , width = 150)
+        st.image(images[1] , width = 100)
+    with column_3:
+        st.image(images[4] , width = 150)
+    column_3 , column_4 , column_5 = st.columns(3 , gap = 'medium')
     with column_3:
         st.image(images[0] , width = 150)
     with column_4:
-        st.image(images[3] , width = 150)
+        st.markdown('#')
     with column_5:
         st.image(images[2] , width = 150)

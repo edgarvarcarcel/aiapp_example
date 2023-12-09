@@ -190,8 +190,7 @@ def preprocess_input(asa, height, weight, bmi, smoker, alcohol,
 ##############################################################################
 # Page configuration
 st.set_page_config(page_title = "Anastomotic Leakage Prediction App",
-                   page_icon=":chart_with_upwards_trend:",
-                   layout = "wide")
+                   page_icon=":chart_with_upwards_trend:")
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 # Initialize app
@@ -301,12 +300,11 @@ if selected == 'Home':
             probs_python.index = ['Probability']
             probs_python.columns = ['No \nAnastomotic Leakage' , 'Anastomotic Leakage']
             st.markdown("<p style='text-align: center;'><strong>Probabilities</strong></p>", unsafe_allow_html=True)
+            st.dataframe(probs_python.reset_index(drop = True).astype('object'),
+                         column_config = {'index' : 'Metric'},
+                         hide_index = True)
             left_column , center_column, right_column = st.columns(3)
-            with center_column:
-                st.dataframe(probs_python.reset_index(drop = True).astype('object'),
-                             column_config = {'index' : 'Metric'},
-                             hide_index = True)
-                st.markdown(text_to_show)
+            st.markdown(text_to_show)
     # Sponsor Images
     st.markdown("---")
     st.markdown("<p style='text-align: center;'><strong>Sponsored By:</strong></p>", unsafe_allow_html=True)
@@ -315,14 +313,17 @@ if selected == 'Home':
               r"images/gzo.png",
               r"images/KSBL.PNG",
               r"images/medtronic.png"]
-    column_1 , column_2 , column_3 , column_4 , column_5 = st.columns(5)
+    column_1 , column_2 , column_3 = st.columns(3 , gap = 'large')
     with column_1:
-        st.image(images[4] , width = 150)
+        st.image(images[3] , width = 100)
     with column_2:
-        st.image(images[1] , width = 150)
+        st.image(images[1] , width = 100)
+    with column_3:
+        st.image(images[4] , width = 150)
+    column_3 , column_4 , column_5 = st.columns(3 , gap = 'medium')
     with column_3:
         st.image(images[0] , width = 150)
     with column_4:
-        st.image(images[3] , width = 150)
+        st.markdown('#')
     with column_5:
         st.image(images[2] , width = 150)
