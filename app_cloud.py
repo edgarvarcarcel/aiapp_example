@@ -20,7 +20,7 @@ from rpy2.robjects.conversion import localconverter
 ##############################################################################
 # GLOBAL PARAMETERS
 MODEL_PATH = r'models'
-MODEL_NAME = '/model_lasso.rds'
+MODEL_NAME = '/model_lasso_V9.rds'
 DATA_PATH = r'data'
 DATA_FILE_NAME = '\DATA_COMPLETE_New.xlsx'
 COMMAND_LOAD_R_MODEL = 'loaded_model <- readRDS("' + MODEL_PATH + MODEL_NAME + '")'
